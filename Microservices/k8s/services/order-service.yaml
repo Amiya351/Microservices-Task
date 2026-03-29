@@ -7,5 +7,5 @@ spec:
     app: order-service
   ports:
   - port: 3002
-    targetport: 3002
+    targetPort: 3002
   type: ClusterIP
