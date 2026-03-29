@@ -12,10 +12,10 @@ jobs:
     strategy:
       matrix:
         service:
-          - microservices/user-service
-          - microservices/product-service
-          - microservices/order-service
-          - microservices/gateway-service
+          - user-service
+          - product-service
+          - order-service
+          - gateway-service
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:${{ env.IMAGE_TAG }} ./${{ matrix.service }}
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:${{ env.IMAGE_TAG }} ./Microservices/${{ matrix.service }}
       - name: Tag as Latest
         run: |
           docker tag ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:${{ env.IMAGE_TAG }} ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.service }}:latest
